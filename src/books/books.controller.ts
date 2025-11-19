@@ -14,7 +14,7 @@ import type { Book } from './interface/books.interface';
 export class BooksController {
   constructor(private readonly bookService: BooksService) {}
 
-  @Get('books')
+  @Get()
   findAllBooks(): Book[] {
     return this.bookService.findAll();
   }
@@ -24,12 +24,12 @@ export class BooksController {
     return this.bookService.findOne(id);
   }
 
-  @Post('/create')
+  @Post()
   create(@Body() book: Book): Book {
     return this.bookService.create(book);
   }
 
-  @Put('/update/:id')
+  @Put(':id')
   update(
     @Param('id') id: string,
     @Body() updatedBook: Partial<Book>,
@@ -37,7 +37,7 @@ export class BooksController {
     return this.bookService.update(id, updatedBook);
   }
 
-  @Delete('/delete/:id')
+  @Delete(':id')
   delete(@Param('id') id: string) {
     return this.bookService.delete(id);
   }
